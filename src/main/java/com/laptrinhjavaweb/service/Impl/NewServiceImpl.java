@@ -66,6 +66,17 @@ public class NewServiceImpl implements INewService {
         return (int)newRepository.count();
     }
 
+    @Override
+    public List<NewDTO> getAllNews() {
+        List<NewDTO> results = new ArrayList<>();
+        List<NewEntity> entities = newRepository.findAll();   //lấy findAll có pageable
+        for (NewEntity item: entities){
+            NewDTO newDTO = newConverter.toDTO(item);
+            results.add(newDTO);
+        }
+        return results;
+    }
+
 //    @Override
 //    public NewDTO update(NewDTO newDTO) {
 //        //update thì lấy lại dữ liệu cũ

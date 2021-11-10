@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 
 import com.laptrinhjavaweb.dto.NewDTO;
 
+import java.util.List;
+
 @CrossOrigin
 @RestController
 public class NewAPI {
@@ -16,6 +18,11 @@ public class NewAPI {
 	@Autowired
 	private INewService newService;
 
+	@GetMapping(value = "/news")
+	public List<NewDTO> show(){
+		List<NewDTO> results = newService.getAllNews();
+		return results;
+	}
 
 	@GetMapping(value = "/new")
 	public NewOutput showNew(@RequestParam("page") int page,

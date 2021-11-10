@@ -13,4 +13,6 @@ public interface INewService {
     //để phân trang được trong spring data jpa thì cần khai báo 1 đối tượng Pageable
     List<NewDTO> findAll(Pageable pageable); //import org.springframework.data.domain.Pageable;
     int totalItem();
+
+    List<NewDTO> getAllNews();
 }
