@@ -57,5 +57,10 @@ public class NewAPI {
 		newService.delete(ids);
 	}
 
+	@DeleteMapping(value = "/new/{id}")
+	public void deleteOneNew(@PathVariable("id") long id) {
+		newService.delete(id);
+	}
+
 
 }

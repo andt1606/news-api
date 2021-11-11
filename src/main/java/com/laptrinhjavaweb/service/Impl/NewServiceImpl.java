@@ -84,6 +84,11 @@ public class NewServiceImpl implements INewService {
         return newDTO;
     }
 
+    @Override
+    public void delete(Long id) {
+        newRepository.delete(id);
+    }
+
 //    @Override
 //    public NewDTO update(NewDTO newDTO) {
 //        //update thì lấy lại dữ liệu cũ

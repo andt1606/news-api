@@ -16,4 +16,5 @@ public interface INewService {
 
     List<NewDTO> getAllNews();
     NewDTO getOneNew(Long id);
+    void delete(Long id);
 }
