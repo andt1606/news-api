@@ -15,4 +15,5 @@ public interface INewService {
     int totalItem();
 
     List<NewDTO> getAllNews();
+    NewDTO getOneNew(Long id);
 }

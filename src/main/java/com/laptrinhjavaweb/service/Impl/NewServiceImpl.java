@@ -77,6 +77,13 @@ public class NewServiceImpl implements INewService {
         return results;
     }
 
+    @Override
+    public NewDTO getOneNew(Long id) {
+        NewEntity entity = newRepository.findOne(id);
+        NewDTO newDTO = newConverter.toDTO(entity);
+        return newDTO;
+    }
+
 //    @Override
 //    public NewDTO update(NewDTO newDTO) {
 //        //update thì lấy lại dữ liệu cũ

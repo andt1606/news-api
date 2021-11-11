@@ -18,6 +18,12 @@ public class NewAPI {
 	@Autowired
 	private INewService newService;
 
+	@GetMapping(value = "/new/{id}")
+	public NewDTO showOne(@PathVariable("id") long id) {
+		NewDTO newDTO = newService.getOneNew(id);
+		return newDTO;
+	}
+
 	@GetMapping(value = "/news")
 	public List<NewDTO> show(){
 		List<NewDTO> results = newService.getAllNews();
