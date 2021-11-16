@@ -1,11 +1,13 @@
 package com.laptrinhjavaweb.service.Impl;
 
 import com.laptrinhjavaweb.converter.CategoryConverter;
+import com.laptrinhjavaweb.converter.NewConverter;
 import com.laptrinhjavaweb.dto.CategoryDTO;
 import com.laptrinhjavaweb.dto.NewDTO;
 import com.laptrinhjavaweb.entity.CategoryEntity;
 import com.laptrinhjavaweb.entity.NewEntity;
 import com.laptrinhjavaweb.repository.CategoryRepository;
+import com.laptrinhjavaweb.repository.NewRepository;
 import com.laptrinhjavaweb.service.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +19,12 @@ import java.util.List;
 public class CategoryServiceImpl implements ICategoryService {
     @Autowired
     private CategoryRepository categoryRepository;
+
+    @Autowired
+    private NewRepository newRepository;
+
+    @Autowired
+    private NewConverter newConverter;
 
     @Autowired
     private CategoryConverter categoryConverter;
@@ -66,5 +74,16 @@ public class CategoryServiceImpl implements ICategoryService {
     @Override
     public void delete(Long id) {
         categoryRepository.delete(id);
+    }
+
+    @Override
+    public List<NewDTO> getNews(Long id) {
+        List<NewDTO> results = new ArrayList<>();
+        List<NewEntity> entities = newRepository.findAllByCategoryId(id);
+        for (NewEntity item: entities){
+            NewDTO newDTO = newConverter.toDTO(item);
+            results.add(newDTO);
+        }
+        return results;
     }
 }

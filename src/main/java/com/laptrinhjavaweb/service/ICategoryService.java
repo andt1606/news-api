@@ -13,4 +13,6 @@ public interface ICategoryService {
     CategoryDTO update(CategoryDTO categoryDTO);
     void delete (long[] ids);
     void delete(Long id);
+
+    List<NewDTO> getNews(Long id);
 }

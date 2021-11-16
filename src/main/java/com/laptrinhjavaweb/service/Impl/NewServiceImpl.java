@@ -69,7 +69,7 @@ public class NewServiceImpl implements INewService {
     @Override
     public List<NewDTO> getAllNews() {
         List<NewDTO> results = new ArrayList<>();
-        List<NewEntity> entities = newRepository.findAll();   //lấy findAll có pageable
+        List<NewEntity> entities = newRepository.findAll();
         for (NewEntity item: entities){
             NewDTO newDTO = newConverter.toDTO(item);
             results.add(newDTO);

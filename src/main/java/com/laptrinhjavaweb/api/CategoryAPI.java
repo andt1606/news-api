@@ -15,6 +15,13 @@ public class CategoryAPI {
     @Autowired
     private ICategoryService categoryService;
 
+
+    @GetMapping(value = "/category/{id}/news")
+    public List<NewDTO> getNewsByCat(@PathVariable("id") long id){
+        List<NewDTO> results = categoryService.getNews(id);
+        return results;
+    }
+
     @GetMapping(value = "/categories")
     public List<CategoryDTO> show(){
         List<CategoryDTO> results = categoryService.getAllCategories();
