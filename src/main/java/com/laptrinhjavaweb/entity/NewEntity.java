@@ -1,6 +1,7 @@
 package com.laptrinhjavaweb.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +21,7 @@ public class NewEntity extends BaseEntity{
     private String content;
 
     @ManyToOne
+    @NotNull
     @JoinColumn(name = "categoryid")
     private CategoryEntity category;
 

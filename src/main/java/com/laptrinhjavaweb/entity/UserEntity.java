@@ -16,14 +16,21 @@ public class UserEntity  extends BaseEntity{
     @Column(name = "status")
     private Integer status;
 
-    @ManyToMany
-    @JoinTable(name = "userrole",
-               joinColumns = @JoinColumn(name = "user_id"),   //đang đứng entity nào thì joinColumns cái đó đầu
-               inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private List<RoleEntity> roles = new ArrayList<>();
+
 
     @OneToMany(mappedBy = "user")
     private List<CommentEntity> comments = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user")
+    private List<UserRoleEntity> userRoles = new ArrayList<>();
+
+    public List<UserRoleEntity> getUserRoles() {
+        return userRoles;
+    }
+
+    public void setUserRoles(List<UserRoleEntity> userRoles) {
+        this.userRoles = userRoles;
+    }
 
     public String getUsername() {
         return username;
@@ -58,13 +65,6 @@ public class UserEntity  extends BaseEntity{
     }
 
 
-    public List<RoleEntity> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(List<RoleEntity> roles) {
-        this.roles = roles;
-    }
 
     public List<CommentEntity> getComments() {
         return comments;

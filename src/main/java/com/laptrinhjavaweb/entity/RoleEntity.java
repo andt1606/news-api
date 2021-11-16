@@ -13,8 +13,8 @@ public class RoleEntity extends BaseEntity{
     @Column(name = "name")
     private String name;
 
-    @ManyToMany(mappedBy = "roles")   // mappedby thì lấy tên của list bên kia
-    private List<UserEntity> users = new ArrayList<>();
+    @OneToMany(mappedBy = "role")
+    private List<UserRoleEntity> userRoles = new ArrayList<>();
 
     public String getCode() {
         return code;
@@ -32,11 +32,5 @@ public class RoleEntity extends BaseEntity{
         this.name = name;
     }
 
-    public List<UserEntity> getUsers() {
-        return users;
-    }
 
-    public void setUsers(List<UserEntity> users) {
-        this.users = users;
-    }
 }
