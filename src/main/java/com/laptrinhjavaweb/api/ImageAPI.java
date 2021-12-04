@@ -1,5 +1,7 @@
 package com.laptrinhjavaweb.api;
 
+import com.laptrinhjavaweb.converter.ImageConverter;
+import com.laptrinhjavaweb.dto.ImageDTO;
 import com.laptrinhjavaweb.entity.ImageModel;
 import com.laptrinhjavaweb.repository.ImageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,15 +25,18 @@ public class ImageAPI {
     @Autowired
     ImageRepository imageRepository;
 
+    @Autowired
+    ImageConverter imageConverter;
+
     @PostMapping("/upload")
-    public String uplaodImage(@RequestParam("file") MultipartFile file) throws IOException {
+    public ImageDTO uplaodImage(@RequestParam("file") MultipartFile file) throws IOException {
 
         String fileName = file.getOriginalFilename().split("\\.")[0];
         System.out.println("Original Image Byte Size - " + file.getBytes().length);
         ImageModel img = new ImageModel(fileName, file.getContentType(),
                 compressBytes(file.getBytes()));
         imageRepository.save(img);
-        return "thanhcong";
+        return imageConverter.convertToImageDTO(img);
     }
 
     @GetMapping(path = { "/get/{imageName}" })
