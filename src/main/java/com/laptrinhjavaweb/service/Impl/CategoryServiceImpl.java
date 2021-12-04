@@ -10,6 +10,7 @@ import com.laptrinhjavaweb.repository.CategoryRepository;
 import com.laptrinhjavaweb.repository.NewRepository;
 import com.laptrinhjavaweb.service.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -86,4 +87,6 @@ public class CategoryServiceImpl implements ICategoryService {
         }
         return results;
     }
+
+
 }

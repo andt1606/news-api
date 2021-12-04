@@ -9,7 +9,15 @@ public class NewDTO extends AbstractDTO<NewDTO>{
 	private String shortDescription;
 	private String categoryCode;
 	private String thumbnail;
-	
+
+	public String getThumbnail() {
+		return thumbnail;
+	}
+
+	public void setThumbnail(String thumbnail) {
+		this.thumbnail = thumbnail;
+	}
+
 	public String getTitle() {
 		return title;
 	}
@@ -42,11 +50,4 @@ public class NewDTO extends AbstractDTO<NewDTO>{
 		this.categoryCode = categoryCode;
 	}
 
-	public String getThumbnail() {
-		return thumbnail;
-	}
-
-	public void setThumbnail(String thumbnail) {
-		this.thumbnail = thumbnail;
-	}
 }

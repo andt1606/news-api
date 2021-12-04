@@ -2,6 +2,7 @@ package com.laptrinhjavaweb.service;
 
 import com.laptrinhjavaweb.dto.CategoryDTO;
 import com.laptrinhjavaweb.dto.NewDTO;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 

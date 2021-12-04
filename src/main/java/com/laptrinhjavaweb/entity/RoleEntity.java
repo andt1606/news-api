@@ -2,7 +2,9 @@ package com.laptrinhjavaweb.entity;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "role")
@@ -14,7 +16,7 @@ public class RoleEntity extends BaseEntity{
     private String name;
 
     @OneToMany(mappedBy = "role")
-    private List<UserRoleEntity> userRoles = new ArrayList<>();
+    private Set<UserRoleEntity> userRoles = new HashSet<>();
 
     public String getCode() {
         return code;

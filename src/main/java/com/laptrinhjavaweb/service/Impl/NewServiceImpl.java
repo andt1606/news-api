@@ -89,14 +89,7 @@ public class NewServiceImpl implements INewService {
         newRepository.delete(id);
     }
 
-//    @Override
-//    public NewDTO update(NewDTO newDTO) {
-//        //update thì lấy lại dữ liệu cũ
-//        NewEntity oldNewEntity = newRepository.findOne(newDTO.getId());
-//        NewEntity newEntity = newConverter.toEntity(newDTO,oldNewEntity);
-//        CategoryEntity categoryEntity = categoryRepository.findOneByCode(newDTO.getCategoryCode());
-//        newEntity.setCategory(categoryEntity);
-//        newEntity = newRepository.save(newEntity);
-//        return newConverter.toDTO(newEntity);
-//    }
+
+
+
 }

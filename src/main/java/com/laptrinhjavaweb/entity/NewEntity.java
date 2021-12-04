@@ -28,6 +28,8 @@ public class NewEntity extends BaseEntity{
     @OneToMany(mappedBy = "newentity")
     private List<CommentEntity> comments = new ArrayList<>();
 
+
+
     public String getTitle() {
         return title;
     }
@@ -36,13 +38,6 @@ public class NewEntity extends BaseEntity{
         this.title = title;
     }
 
-    public String getThumbnail() {
-        return thumbnail;
-    }
-
-    public void setThumbnail(String thumbnail) {
-        this.thumbnail = thumbnail;
-    }
 
     public String getShortDescription() {
         return shortDescription;
@@ -74,5 +69,13 @@ public class NewEntity extends BaseEntity{
 
     public void setComments(List<CommentEntity> comments) {
         this.comments = comments;
+    }
+
+    public String getThumbnail() {
+        return thumbnail;
+    }
+
+    public void setThumbnail(String thumbnail) {
+        this.thumbnail = thumbnail;
     }
 }

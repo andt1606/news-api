@@ -45,6 +45,8 @@ public class NewAPI {
 	public NewDTO createNew(@RequestBody NewDTO model) {
 		return newService.save(model);
 	}
+
+
 	
 	@PutMapping(value = "/new/{id}")
 	public NewDTO updateNew(@RequestBody NewDTO model, @PathVariable("id") long id) {
