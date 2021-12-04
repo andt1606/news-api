@@ -8,13 +8,13 @@ public class NewDTO extends AbstractDTO<NewDTO>{
 	private String content;
 	private String shortDescription;
 	private String categoryCode;
-	private String thumbnail;
+	private byte[] thumbnail;
 
-	public String getThumbnail() {
+	public byte[] getThumbnail() {
 		return thumbnail;
 	}
 
-	public void setThumbnail(String thumbnail) {
+	public void setThumbnail(byte[] thumbnail) {
 		this.thumbnail = thumbnail;
 	}
 

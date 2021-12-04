@@ -8,8 +8,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import com.laptrinhjavaweb.dto.NewDTO;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 @CrossOrigin
 @RestController
@@ -21,6 +24,7 @@ public class NewAPI {
 	@GetMapping(value = "/new/{id}")
 	public NewDTO showOne(@PathVariable("id") long id) {
 		NewDTO newDTO = newService.getOneNew(id);
+
 		return newDTO;
 	}
 
@@ -41,9 +45,15 @@ public class NewAPI {
 		return result;
 	}
 
+//	@PostMapping(value = "/new")
+//	public NewDTO createNew(@RequestBody NewDTO model) {
+//		return newService.save(model);
+//	}
+
 	@PostMapping(value = "/new")
-	public NewDTO createNew(@RequestBody NewDTO model) {
-		return newService.save(model);
+	public NewDTO createNew(@RequestParam(required = false) Map<String,Object> params,
+							@RequestParam("imageFile") MultipartFile file) throws IOException {
+		return newService.creNew(params,file);
 	}
 
 

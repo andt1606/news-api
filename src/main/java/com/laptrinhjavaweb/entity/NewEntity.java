@@ -11,8 +11,8 @@ public class NewEntity extends BaseEntity{
     @Column(name = "title")
     private String title;
 
-    @Column(name = "thumbnail")
-    private String thumbnail;
+    @Column(name = "thumbnail", length = 1000)
+    private byte[] thumbnail;
 
     @Column(name = "shortdescription")
     private String shortDescription;
@@ -71,11 +71,11 @@ public class NewEntity extends BaseEntity{
         this.comments = comments;
     }
 
-    public String getThumbnail() {
+    public byte[] getThumbnail() {
         return thumbnail;
     }
 
-    public void setThumbnail(String thumbnail) {
+    public void setThumbnail(byte[] thumbnail) {
         this.thumbnail = thumbnail;
     }
 }
