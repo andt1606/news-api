@@ -22,4 +22,5 @@ public interface INewService {
     void delete(Long id);
 
     NewDTO creNew(Map<String, Object> params, MultipartFile file) throws IOException;
+    NewDTO updateNew(Long id, Map<String, Object> params, MultipartFile file) throws IOException;
 }

@@ -114,6 +114,27 @@ public class NewServiceImpl implements INewService {
         return newConverter.toDTO(newEntity);
     }
 
+    @Override
+    public NewDTO updateNew(Long id, Map<String, Object> params, MultipartFile file) throws IOException {
+        NewEntity newEntity = new NewEntity();
+        NewDTO newDTO = new NewDTO();
+        newDTO.setTitle(params.get("title").toString());
+        newDTO.setShortDescription(params.get("shortDescription").toString());
+        newDTO.setContent(params.get("content").toString());
+        newDTO.setCategoryCode(params.get("categoryCode").toString());
+        newDTO.setThumbnail(compressBytes(file.getBytes()));
+
+        NewEntity oldNewEntity = newRepository.findOne(id);
+        //gán cái mới nhận được cho cái cũ để cập nhật
+        newEntity = newConverter.toEntity(newDTO,oldNewEntity);
+        CategoryEntity categoryEntity = categoryRepository.findOneByCode(newDTO.getCategoryCode());
+        newEntity.setCategory(categoryEntity);
+        newEntity = newRepository.save(newEntity);
+
+
+        return newConverter.toDTO(newEntity);
+    }
+
     // compress the image bytes before storing it in the database
     public static byte[] compressBytes(byte[] data) {
         Deflater deflater = new Deflater();

@@ -11,7 +11,7 @@ public class NewEntity extends BaseEntity{
     @Column(name = "title")
     private String title;
 
-    @Column(name = "thumbnail", length = 1000)
+    @Column(name = "thumbnail", length = 1000000)
     private byte[] thumbnail;
 
     @Column(name = "shortdescription")

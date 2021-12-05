@@ -58,10 +58,17 @@ public class NewAPI {
 
 
 	
+//	@PutMapping(value = "/new/{id}")
+//	public NewDTO updateNew(@RequestBody NewDTO model, @PathVariable("id") long id) {
+//		model.setId(id);
+//		return newService.save(model);
+//	}
+
 	@PutMapping(value = "/new/{id}")
-	public NewDTO updateNew(@RequestBody NewDTO model, @PathVariable("id") long id) {
-		model.setId(id);
-		return newService.save(model);
+	public NewDTO updateNew(@PathVariable("id") long id,
+							@RequestParam("imageFile") MultipartFile file,
+							@RequestParam(required = false) Map<String,Object> params) throws IOException {
+		return newService.updateNew(id,params,file);
 	}
 	
 	@DeleteMapping(value = "/new")
