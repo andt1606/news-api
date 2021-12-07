@@ -23,4 +23,6 @@ public interface INewService {
 
     NewDTO creNew(Map<String, Object> params, MultipartFile file) throws IOException;
     NewDTO updateNew(Long id, Map<String, Object> params, MultipartFile file) throws IOException;
+
+    List<NewDTO> getNews(String strSearch);
 }

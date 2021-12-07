@@ -82,4 +82,9 @@ public class NewAPI {
 	}
 
 
+	@GetMapping(value = "/new/search")
+	public List<NewDTO> searchNew(@RequestParam("search") String strSearch) {
+		List<NewDTO> news = newService.getNews(strSearch);
+		return news;
+	}
 }

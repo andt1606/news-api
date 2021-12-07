@@ -135,6 +135,17 @@ public class NewServiceImpl implements INewService {
         return newConverter.toDTO(newEntity);
     }
 
+    @Override
+    public List<NewDTO> getNews(String strSearch) {
+        List<NewDTO> results = new ArrayList<>();
+        List<NewEntity> entities = newRepository.findByTitleLike("%"+strSearch+"%");
+        for (NewEntity item: entities){
+            NewDTO newDTO = newConverter.toDTO(item);
+            results.add(newDTO);
+        }
+        return results;
+    }
+
     // compress the image bytes before storing it in the database
     public static byte[] compressBytes(byte[] data) {
         Deflater deflater = new Deflater();
@@ -153,24 +164,6 @@ public class NewServiceImpl implements INewService {
         }
         System.out.println("Compressed Image Byte Size - " + outputStream.toByteArray().length);
 
-        return outputStream.toByteArray();
-    }
-
-    // uncompress the image bytes before returning it to the angular application
-    public static byte[] decompressBytes(byte[] data) {
-        Inflater inflater = new Inflater();
-        inflater.setInput(data);
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream(data.length);
-        byte[] buffer = new byte[1024];
-        try {
-            while (!inflater.finished()) {
-                int count = inflater.inflate(buffer);
-                outputStream.write(buffer, 0, count);
-            }
-            outputStream.close();
-        } catch (IOException ioe) {
-        } catch (DataFormatException e) {
-        }
         return outputStream.toByteArray();
     }
 

@@ -11,4 +11,5 @@ import java.util.List;
 public interface NewRepository extends JpaRepository<NewEntity, Long> {
     // ko cần implement class vì nó viết sẵn trong JpaRepository rồi nên chỉ cần mỗi Interface class này thôi
     List<NewEntity> findAllByCategoryId(Long id);
+    List<NewEntity> findByTitleLike(String title);
 }

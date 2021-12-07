@@ -17,7 +17,7 @@ public class NewEntity extends BaseEntity{
     @Column(name = "shortdescription")
     private String shortDescription;
 
-    @Column(name = "content")
+    @Column(name = "content", columnDefinition = "TEXT")
     private String content;
 
     @ManyToOne
