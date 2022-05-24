@@ -20,6 +20,9 @@ public class NewEntity extends BaseEntity{
     @Column(name = "content", columnDefinition = "TEXT")
     private String content;
 
+    @Column(name = "status")
+    private Integer status;
+
     @ManyToOne
     @NotNull
     @JoinColumn(name = "categoryid")
@@ -53,6 +56,14 @@ public class NewEntity extends BaseEntity{
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     public CategoryEntity getCategory() {

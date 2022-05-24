@@ -16,6 +16,9 @@ public class CategoryEntity extends BaseEntity{
     @Column(name = "name")
     private String name;
 
+    @Column(name = "status")
+    private Integer status;
+
     @OneToMany(mappedBy = "category")   //map với category bên kia (private CategoryEntity category;)
     private List<NewEntity> news = new ArrayList<>();
 
@@ -34,6 +37,14 @@ public class CategoryEntity extends BaseEntity{
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     public List<NewEntity> getNews() {

@@ -8,6 +8,7 @@ public class NewDTO extends AbstractDTO<NewDTO>{
 	private String content;
 	private String shortDescription;
 	private String categoryCode;
+	private Integer status;
 	private byte[] thumbnail;
 
 	public byte[] getThumbnail() {
@@ -50,4 +51,11 @@ public class NewDTO extends AbstractDTO<NewDTO>{
 		this.categoryCode = categoryCode;
 	}
 
+	public Integer getStatus() {
+		return status;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
 }
