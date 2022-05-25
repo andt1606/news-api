@@ -104,7 +104,7 @@ public class NewServiceImpl implements INewService {
         newDTO.setShortDescription(params.get("shortDescription").toString());
         newDTO.setContent(params.get("content").toString());
         newDTO.setCategoryCode(params.get("categoryCode").toString());
-        newDTO.setStatus(Integer.parseInt(params.get("status").toString()));
+        newDTO.setStatus(1);
         newDTO.setThumbnail(compressBytes(file.getBytes()));
         newEntity = newConverter.toEntity(newDTO);
         CategoryEntity categoryEntity = categoryRepository.findOneByCode(newDTO.getCategoryCode());

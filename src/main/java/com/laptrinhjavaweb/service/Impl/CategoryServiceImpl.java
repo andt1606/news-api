@@ -52,6 +52,7 @@ public class CategoryServiceImpl implements ICategoryService {
     public CategoryDTO save(CategoryDTO categoryDTO) {
         CategoryEntity categoryEntity = new CategoryEntity();
         categoryEntity = categoryConverter.convertToCategoryEntity(categoryDTO);
+        categoryEntity.setStatus(1);
         categoryEntity = categoryRepository.save(categoryEntity);
         return categoryConverter.convertToCategoryDTO(categoryEntity);
     }
@@ -71,18 +72,8 @@ public class CategoryServiceImpl implements ICategoryService {
                     newRepository.save(item);
                 }
             }
-            oldCategoryEntity = categoryRepository.save(oldCategoryEntity);
-        } else{
-            List<NewEntity> newsOfCate = newRepository.findAllByCategoryId(oldCategoryEntity.getId());
-            if(newsOfCate.size() > 0){
-                for (NewEntity item: newsOfCate) {
-                    item.setStatus(1);
-                    newRepository.save(item);
-                }
-            }
-            oldCategoryEntity = categoryRepository.save(oldCategoryEntity);
         }
-
+        oldCategoryEntity = categoryRepository.save(oldCategoryEntity);
         return categoryConverter.convertToCategoryDTO(oldCategoryEntity);
     }
 
