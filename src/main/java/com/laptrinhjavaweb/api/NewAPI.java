@@ -70,7 +70,12 @@ public class NewAPI {
 							@RequestParam(required = false) Map<String,Object> params) throws IOException {
 		return newService.updateNew(id,params,file);
 	}
-	
+
+	@PutMapping(value = "/new/{id}/{status}")
+	public NewDTO updateStatusOfNew(@PathVariable("id") long id, @PathVariable("status") Integer status) {
+		return newService.updateStatusOfNew(id,status);
+	}
+
 	@DeleteMapping(value = "/new")
 	public void deleteNew(@RequestBody long[] ids) {
 		newService.delete(ids);

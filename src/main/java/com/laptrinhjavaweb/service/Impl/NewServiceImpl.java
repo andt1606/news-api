@@ -138,6 +138,16 @@ public class NewServiceImpl implements INewService {
     }
 
     @Override
+    public NewDTO updateStatusOfNew(Long id, Integer status) {
+
+        NewEntity newEntity = newRepository.findOne(id);
+        newEntity.setStatus(status);
+        newEntity = newRepository.save(newEntity);
+
+        return newConverter.toDTO(newEntity);
+    }
+
+    @Override
     public List<NewDTO> getNews(String strSearch) {
         List<NewDTO> results = new ArrayList<>();
         List<NewEntity> entities = newRepository.findByTitleLike("%"+strSearch+"%");

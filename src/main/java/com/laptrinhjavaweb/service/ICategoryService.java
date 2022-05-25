@@ -12,6 +12,7 @@ public interface ICategoryService {
 
     CategoryDTO save(CategoryDTO categoryDTO);
     CategoryDTO update(CategoryDTO categoryDTO);
+
     void delete (long[] ids);
     void delete(Long id);
 
