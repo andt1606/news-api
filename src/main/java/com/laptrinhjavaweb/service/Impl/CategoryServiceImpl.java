@@ -62,7 +62,27 @@ public class CategoryServiceImpl implements ICategoryService {
         oldCategoryEntity.setCode(categoryDTO.getCode());
         oldCategoryEntity.setName(categoryDTO.getName());
         oldCategoryEntity.setStatus(categoryDTO.getStatus());
-        oldCategoryEntity = categoryRepository.save(oldCategoryEntity);
+
+        if(categoryDTO.getStatus() != null && categoryDTO.getStatus() == 0){
+            List<NewEntity> newsOfCate = newRepository.findAllByCategoryId(oldCategoryEntity.getId());
+            if(newsOfCate.size() > 0){
+                for (NewEntity item: newsOfCate) {
+                    item.setStatus(0);
+                    newRepository.save(item);
+                }
+            }
+            oldCategoryEntity = categoryRepository.save(oldCategoryEntity);
+        } else{
+            List<NewEntity> newsOfCate = newRepository.findAllByCategoryId(oldCategoryEntity.getId());
+            if(newsOfCate.size() > 0){
+                for (NewEntity item: newsOfCate) {
+                    item.setStatus(1);
+                    newRepository.save(item);
+                }
+            }
+            oldCategoryEntity = categoryRepository.save(oldCategoryEntity);
+        }
+
         return categoryConverter.convertToCategoryDTO(oldCategoryEntity);
     }
 
