@@ -1,7 +1,9 @@
 package com.laptrinhjavaweb.service.Impl;
 
 import com.laptrinhjavaweb.converter.NewConverter;
+import com.laptrinhjavaweb.dto.CategoryDTO;
 import com.laptrinhjavaweb.dto.NewDTO;
+import com.laptrinhjavaweb.dto.UpdateStatusRequest;
 import com.laptrinhjavaweb.entity.CategoryEntity;
 import com.laptrinhjavaweb.entity.NewEntity;
 import com.laptrinhjavaweb.repository.CategoryRepository;
@@ -138,13 +140,12 @@ public class NewServiceImpl implements INewService {
     }
 
     @Override
-    public NewDTO updateStatusOfNew(Long id, Integer status) {
-
-        NewEntity newEntity = newRepository.findOne(id);
-        newEntity.setStatus(status);
-        newEntity = newRepository.save(newEntity);
-
-        return newConverter.toDTO(newEntity);
+    public void updateStatusOfNew(UpdateStatusRequest model) {
+        for (Long item : model.getId()) {
+            NewEntity newEntity = newRepository.findOne(item);
+            newEntity.setStatus(model.getStatus());
+            newEntity = newRepository.save(newEntity);
+        }
     }
 
     @Override

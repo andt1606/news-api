@@ -1,6 +1,8 @@
 package com.laptrinhjavaweb.api;
 
 import com.laptrinhjavaweb.api.output.NewOutput;
+import com.laptrinhjavaweb.dto.CategoryDTO;
+import com.laptrinhjavaweb.dto.UpdateStatusRequest;
 import com.laptrinhjavaweb.service.INewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -71,9 +73,9 @@ public class NewAPI {
 		return newService.updateNew(id,params,file);
 	}
 
-	@PutMapping(value = "/new/{id}/{status}")
-	public NewDTO updateStatusOfNew(@PathVariable("id") long id, @PathVariable("status") Integer status) {
-		return newService.updateStatusOfNew(id,status);
+	@PutMapping(value = "/new")
+	public void updateStatusOfNew(@RequestBody UpdateStatusRequest model) {
+		newService.updateStatusOfNew(model);
 	}
 
 	@DeleteMapping(value = "/new")

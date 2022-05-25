@@ -1,6 +1,8 @@
 package com.laptrinhjavaweb.service;
 
+import com.laptrinhjavaweb.dto.CategoryDTO;
 import com.laptrinhjavaweb.dto.NewDTO;
+import com.laptrinhjavaweb.dto.UpdateStatusRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -23,7 +25,7 @@ public interface INewService {
 
     NewDTO creNew(Map<String, Object> params, MultipartFile file) throws IOException;
     NewDTO updateNew(Long id, Map<String, Object> params, MultipartFile file) throws IOException;
-    NewDTO updateStatusOfNew (Long id, Integer status);
+    void updateStatusOfNew (UpdateStatusRequest model);
 
     List<NewDTO> getNews(String strSearch);
 }
