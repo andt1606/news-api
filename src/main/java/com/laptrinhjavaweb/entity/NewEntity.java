@@ -23,6 +23,7 @@ public class NewEntity extends BaseEntity{
     @Column(name = "status")
     private Integer status;
 
+
     @ManyToOne
     @NotNull
     @JoinColumn(name = "categoryid")
