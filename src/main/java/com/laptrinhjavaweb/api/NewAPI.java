@@ -7,6 +7,7 @@ import com.laptrinhjavaweb.service.INewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import com.laptrinhjavaweb.dto.NewDTO;
@@ -16,7 +17,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-@CrossOrigin
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 public class NewAPI {
 
@@ -53,6 +54,7 @@ public class NewAPI {
 //	}
 
 	@PostMapping(value = "/new")
+	@PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
 	public NewDTO createNew(@RequestParam(required = false) Map<String,Object> params,
 							@RequestParam("imageFile") MultipartFile file) throws IOException {
 		return newService.creNew(params,file);
@@ -67,6 +69,7 @@ public class NewAPI {
 //	}
 
 	@PutMapping(value = "/new/{id}")
+	@PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
 	public NewDTO updateNew(@PathVariable("id") long id,
 							@RequestParam("imageFile") MultipartFile file,
 							@RequestParam(required = false) Map<String,Object> params) throws IOException {
@@ -74,16 +77,19 @@ public class NewAPI {
 	}
 
 	@PutMapping(value = "/new")
+	@PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
 	public void updateStatusOfNew(@RequestBody UpdateStatusRequest model) {
 		newService.updateStatusOfNew(model);
 	}
 
 	@DeleteMapping(value = "/new")
+	@PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
 	public void deleteNew(@RequestBody long[] ids) {
 		newService.delete(ids);
 	}
 
 	@DeleteMapping(value = "/new/{id}")
+	@PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
 	public void deleteOneNew(@PathVariable("id") long id) {
 		newService.delete(id);
 	}

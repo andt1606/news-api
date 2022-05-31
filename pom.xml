@@ -13,7 +13,7 @@
 	</parent>
 
 	<properties>
-		<mysql.version>8.0.25</mysql.version>
+		<mysql.version>8.0.29</mysql.version>
 		<java.version>1.8</java.version>
 	</properties>
 
@@ -38,6 +38,18 @@
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>${mysql.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
+
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt</artifactId>
+			<version>0.9.1</version>
 		</dependency>
 
 		<dependency>

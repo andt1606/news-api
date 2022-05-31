@@ -1,37 +1,43 @@
 package com.laptrinhjavaweb.entity;
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
+
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users",
+        uniqueConstraints = {
+                @UniqueConstraint(columnNames = "username"),
+                @UniqueConstraint(columnNames = "email")
+        })
 public class UserEntity  extends BaseEntity{
-    @Column(name = "username", nullable = false, unique = true)
+    @NotBlank
+    @Size(max = 20)
     private String username;
-    @Column(name = "password", nullable = false)
+    @NotBlank
+    @Size(max = 50)
+    @Email
+    private String email;
+    @NotBlank
+    @Size(max = 120)
     private String password;
-    @Column(name = "fullname")
-    private String fullname;
-    @Column(name = "status", nullable = false)
-    private Integer status;
-
-
-
-    @OneToMany(mappedBy = "user")
-    private List<CommentEntity> comments = new ArrayList<>();
-
-    @OneToMany(mappedBy = "user")
-    private Set<UserRoleEntity> userRoles = new HashSet<>();
-
-    public Set<UserRoleEntity> getUserRoles() {
-        return userRoles;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(	name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<RoleEntity> roles = new HashSet<>();
+    public UserEntity() {
     }
-
-    public void setUserRoles(Set<UserRoleEntity> userRoles) {
-        this.userRoles = userRoles;
+    public UserEntity(String username, String email, String password) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
     }
 
     public String getUsername() {
@@ -42,6 +48,14 @@ public class UserEntity  extends BaseEntity{
         this.username = username;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getPassword() {
         return password;
     }
@@ -50,29 +64,11 @@ public class UserEntity  extends BaseEntity{
         this.password = password;
     }
 
-    public String getFullname() {
-        return fullname;
+    public Set<RoleEntity> getRoles() {
+        return roles;
     }
 
-    public void setFullname(String fullname) {
-        this.fullname = fullname;
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
-
-
-    public List<CommentEntity> getComments() {
-        return comments;
-    }
-
-    public void setComments(List<CommentEntity> comments) {
-        this.comments = comments;
+    public void setRoles(Set<RoleEntity> roles) {
+        this.roles = roles;
     }
 }

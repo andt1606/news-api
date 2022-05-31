@@ -9,12 +9,13 @@ import com.laptrinhjavaweb.service.INewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
 
-@CrossOrigin
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 public class CategoryAPI {
     @Autowired
@@ -56,22 +57,26 @@ public class CategoryAPI {
 
 
     @PostMapping(value = "/category")
+    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
     public CategoryDTO createNew(@RequestBody CategoryDTO model) {
         return categoryService.save(model);
     }
 
     @PutMapping(value = "/category/{id}")
+    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
     public CategoryDTO updateNew(@RequestBody CategoryDTO model, @PathVariable("id") long id) {
         model.setId(id);
         return categoryService.update(model);
     }
 
     @DeleteMapping(value = "/category")
+    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
     public void deleteAllCategory(@RequestBody long[] ids) {
         categoryService.delete(ids);
     }
 
     @DeleteMapping(value = "/category/{id}")
+    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
     public void deleteOneCategory(@PathVariable("id") long id) {
         categoryService.delete(id);
     }
