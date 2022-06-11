@@ -20,6 +20,9 @@ public class NewEntity extends BaseEntity{
     @Column(name = "content", columnDefinition = "TEXT")
     private String content;
 
+    @Column(name = "author")
+    private String author;
+
     @Column(name = "status")
     private Integer status;
 
@@ -33,6 +36,13 @@ public class NewEntity extends BaseEntity{
     private List<CommentEntity> comments = new ArrayList<>();
 
 
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
 
     public String getTitle() {
         return title;

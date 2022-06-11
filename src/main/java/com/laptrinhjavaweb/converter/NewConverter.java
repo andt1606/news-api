@@ -20,6 +20,7 @@ public class NewConverter {
         entity.setShortDescription(dto.getShortDescription());
         entity.setThumbnail(dto.getThumbnail());
         entity.setStatus(dto.getStatus());
+        entity.setAuthor(dto.getAuthor());
         return entity;
     }
 
@@ -34,6 +35,7 @@ public class NewConverter {
         dto.setThumbnail(decompressBytes(entity.getThumbnail()));
         dto.setCategoryCode(entity.getCategory().getCode());
         dto.setStatus(entity.getStatus());
+        dto.setAuthor(entity.getAuthor());
 
         dto.setCreatedDate(entity.getCreatedDate());
         dto.setCreatedBy(entity.getCreatedBy());
@@ -48,6 +50,7 @@ public class NewConverter {
         entity.setShortDescription(dto.getShortDescription());
         entity.setThumbnail(dto.getThumbnail());
         entity.setStatus(dto.getStatus());
+        entity.setAuthor(dto.getAuthor());
         return entity;
     }
 

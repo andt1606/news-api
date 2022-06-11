@@ -107,6 +107,7 @@ public class NewServiceImpl implements INewService {
         newDTO.setContent(params.get("content").toString());
         newDTO.setCategoryCode(params.get("categoryCode").toString());
         newDTO.setStatus(1);
+        newDTO.setAuthor(params.get("author").toString());
         newDTO.setThumbnail(compressBytes(file.getBytes()));
         newEntity = newConverter.toEntity(newDTO);
         CategoryEntity categoryEntity = categoryRepository.findOneByCode(newDTO.getCategoryCode());
@@ -126,6 +127,7 @@ public class NewServiceImpl implements INewService {
         newDTO.setContent(params.get("content").toString());
         newDTO.setCategoryCode(params.get("categoryCode").toString());
         newDTO.setStatus(Integer.parseInt(params.get("status").toString()));
+        newDTO.setAuthor(params.get("author").toString());
         newDTO.setThumbnail(compressBytes(file.getBytes()));
 
         NewEntity oldNewEntity = newRepository.findOne(id);
